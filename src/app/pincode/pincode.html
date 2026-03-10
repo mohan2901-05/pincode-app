@@ -1,0 +1,26 @@
+<div class="container">
+
+<h2>Pincode Lookup</h2>
+
+<div class="search-box">
+  <input type="text" [(ngModel)]="pincode" placeholder="Enter Pincode">
+  <button (click)="getPincodeDetails()">Search</button>
+</div>
+
+<table *ngIf="postOffices.length > 0">
+
+<tr>
+<th>Post Office</th>
+<th>District</th>
+<th>State</th>
+</tr>
+
+<tr *ngFor="let office of postOffices">
+<td>{{office.Name}}</td>
+<td>{{office.District}}</td>
+<td>{{office.State}}</td>
+</tr>
+
+</table>
+
+</div>
