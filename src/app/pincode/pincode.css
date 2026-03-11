@@ -61,6 +61,12 @@ tr:nth-child(even){
     background-color: #f9f9f9;
 }
 
+.error{
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
 th{
     background-color: #007bff;
     color: white;
