@@ -14,14 +14,25 @@ export class PincodeComponent {
 
   pincode: string = "";
   postOffices: any[] = [];
+  loading: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   getPincodeDetails() {
 
+    // Validate pincode
+    if (this.pincode.length !== 6) {
+      alert("Please enter a valid 6-digit pincode");
+      return;
+    }
+
+    this.loading = true;
+
     const url = "https://api.postalpincode.in/pincode/" + this.pincode;
 
     this.http.get<any>(url).subscribe(response => {
+
+      this.loading = false;
 
       if (response[0].Status === "Success") {
         this.postOffices = response[0].PostOffice;
