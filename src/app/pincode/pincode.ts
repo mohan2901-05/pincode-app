@@ -14,28 +14,34 @@ export class PincodeComponent {
 
   pincode: string = "";
   postOffices: any[] = [];
-  errorMessage: string = "";
 
   constructor(private http: HttpClient) {}
 
   getPincodeDetails() {
 
-    this.errorMessage = "";
-    this.postOffices = [];
-
     if (this.pincode.length !== 6) {
-      this.errorMessage = "Please enter a valid 6-digit pincode.";
+      alert("Please enter a valid 6-digit pincode");
       return;
     }
 
     const url = "https://api.postalpincode.in/pincode/" + this.pincode;
 
-    this.http.get<any>(url).subscribe(response => {
+    this.http.get<any>(url).subscribe({
 
-      if (response[0].Status === "Success") {
-        this.postOffices = response[0].PostOffice;
-      } else {
-        this.errorMessage = "No results found for this pincode.";
+      next: (response) => {
+
+        if (response[0].Status === "Success") {
+          this.postOffices = response[0].PostOffice;
+        } else {
+          alert("Invalid Pincode");
+          this.postOffices = [];
+        }
+
+      },
+
+      error: (error) => {
+        console.error(error);
+        alert("Unable to fetch data");
       }
 
     });

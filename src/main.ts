@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { PincodeComponent } from './app/pincode/pincode';
+import { App } from './app/app';
 
-bootstrapApplication(PincodeComponent, appConfig)
+bootstrapApplication(App, appConfig)
   .catch((err) => console.error(err));
